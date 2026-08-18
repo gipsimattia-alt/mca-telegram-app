@@ -48,3 +48,10 @@ Per l'invio completamente automatico senza che l'utente prema "Invia" serve un b
 - Totale tavolo calcolato in tempo reale.
 - Spesa per persona calcolata automaticamente.
 - Richiesta tavolo con riepilogo completo.
+
+
+## Versione v5 — Richiesta tavolo WhatsApp
+- Dopo "Richiedi tavolo" compare il modulo dati.
+- La richiesta viene inviata esclusivamente tramite WhatsApp.
+- Il messaggio contiene persone, bottiglie, totale, spesa a persona, paese di partenza e navetta.
+- Contatto WhatsApp: Mattia Gipsi.

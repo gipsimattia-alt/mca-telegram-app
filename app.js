@@ -77,10 +77,18 @@ function submitTableRequest(){
     toast('Seleziona almeno una bottiglia per comporre il tavolo.');
     return;
   }
-  const items=selected.map(el=>`${el.dataset.name} €${el.dataset.price}`).join(', ');
-  window.requestDraft=`MCA / ELITE - RICHIESTA TAVOLO\nPersone: ${people}\nBottiglie: ${items}\nTotale tavolo: €${total.toFixed(2)}\nSpesa a persona: €${(total/people).toFixed(2)}\nPagamento: contanti\nReferente: Mattia Gipsi`;
-  document.getElementById('requestContact')?.scrollIntoView({behavior:'smooth',block:'center'});
-  toast('Tavolo pronto. Scegli come inviare la richiesta.');
+  window.tableRequestData={
+    people,
+    total,
+    perPerson: total/people,
+    items: selected.map(el=>({name:el.dataset.name,price:parseFloat(el.dataset.price)||0}))
+  };
+  const box=document.getElementById('requestContact');
+  if(box){
+    box.hidden=false;
+    box.scrollIntoView({behavior:'smooth',block:'center'});
+    setTimeout(()=>document.getElementById('requestName')?.focus(),250);
+  }
 }
 document.addEventListener('DOMContentLoaded',()=>{
   const slider=document.getElementById('peopleSlider');
@@ -88,3 +96,38 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('#tableConfigurator input[type="checkbox"]').forEach(x=>x.addEventListener('change',updateTableTotal));
   updateTableTotal();
 });
+
+function sendTableRequestWhatsApp(){
+  const data=window.tableRequestData;
+  if(!data){ submitTableRequest(); return; }
+  const name=(document.getElementById('requestName')?.value||'').trim();
+  const phone=(document.getElementById('requestPhone')?.value||'').trim();
+  const town=document.getElementById('requestTown')?.value||'';
+  const navetta=document.getElementById('requestNavetta')?.checked ? 'Sì' : 'No';
+  if(!name || !phone){
+    toast('Inserisci nome e numero di telefono.');
+    return;
+  }
+  const items=data.items.map(x=>`• ${x.name} — €${x.price.toFixed(2)}`).join('\n');
+  const message =
+`🔥 NUOVA RICHIESTA TAVOLO MCA
+
+👤 Nome: ${name}
+📞 Telefono: ${phone}
+👥 Persone: ${data.people}
+
+🥂 BOTTIGLIE
+${items}
+
+💰 Totale tavolo: €${data.total.toFixed(2)}
+👤 Spesa a persona: €${data.perPerson.toFixed(2)}
+
+📍 Partenza: ${town}
+🚐 Navetta: ${navetta}
+
+Pagamento: contanti
+Referente: Mattia Gipsi`;
+
+  const whatsappUrl='https://wa.me/39371460364?text='+encodeURIComponent(message);
+  window.open(whatsappUrl,'_blank','noopener');
+}

@@ -94,6 +94,32 @@
     <div class="per-person"><span>Spesa a persona</span><strong id="summaryPerPerson">€0,00</strong></div>
     <button class="primary full" type="button" onclick="submitTableRequest()">RICHIEDI TAVOLO</button>
   </div>
+
+<div id="requestContact" class="request-contact" hidden>
+  <h3>📲 Invia la richiesta</h3>
+  <p class="muted">Inserisci i tuoi dati. La richiesta verrà preparata per WhatsApp di Mattia.</p>
+  <label>Nome e cognome
+    <input id="requestName" type="text" placeholder="Es. Mario Rossi" autocomplete="name">
+  </label>
+  <label>Numero di telefono
+    <input id="requestPhone" type="tel" placeholder="Es. 3331234567" autocomplete="tel">
+  </label>
+  <label>Da dove partite?
+    <select id="requestTown">
+      <option value="Montefiascone">Montefiascone</option>
+      <option value="Marta">Marta</option>
+      <option value="Piansano">Piansano</option>
+      <option value="Valentano">Valentano</option>
+      <option value="Altro">Altro</option>
+    </select>
+  </label>
+  <label class="navetta-check">
+    <input id="requestNavetta" type="checkbox">
+    🚐 Richiedo anche la navetta
+  </label>
+  <button class="whatsapp-button full" type="button" onclick="sendTableRequestWhatsApp()">💬 INVIA RICHIESTA SU WHATSAPP</button>
+</div>
+
 </section>
 
 <section class="card">
