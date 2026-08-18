@@ -15,7 +15,7 @@ function openSection(id){
 }
 function requestTicket(){
   const qty=document.getElementById('ticketQty')?.value || '1';
-  window.requestDraft=`MCA / Elite - RICHIESTA ENTRATE\nNome: Cliente Telegram\nEntrate: ${qty}\nPagamento: contanti\nReferente: Mattia Gipsi`;
+  window.requestDraft=`MCA / Elite - RICHIESTA Navette\nNome: Cliente Telegram\nEntrate: ${qty}\nPagamento: contanti\nReferente: Mattia Gipsi`;
   document.getElementById('requestContact')?.scrollIntoView({behavior:'smooth',block:'center'});
   toast('Richiesta pronta. Scegli WhatsApp o Telegram.');
 }

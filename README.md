@@ -81,3 +81,10 @@ Per l'invio completamente automatico senza che l'utente prema "Invia" serve un b
 - Calcolo automatico €1/persona.
 - Richiesta navetta con nome, telefono, orario e note.
 - Invio richiesta esclusivamente via WhatsApp a Mattia.
+
+
+## Versione v10 — Navette definitiva
+- Rimossi tutti i riferimenti UI a "Entrate".
+- La sezione principale è "Navette".
+- Menu e testi aggiornati.
+- Cache busting v10 per CSS/JS.
