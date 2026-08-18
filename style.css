@@ -56,3 +56,25 @@ main, body{padding-bottom:110px}
     margin-bottom:8px;
   }
 }
+
+/* v9 — MCA Navette */
+.navette-section{margin-top:18px;padding-bottom:150px!important}
+.navette-step{margin-top:18px;padding:16px;border:1px solid rgba(255,255,255,.10);border-radius:18px;background:rgba(255,255,255,.035)}
+.step-title{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.step-title>span{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#c51f3a;font-weight:900}
+.town-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.town-btn{padding:13px 10px;border-radius:13px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.025);color:inherit;font:inherit;font-weight:700}
+.town-btn.active{border-color:#c51f3a;background:rgba(197,31,58,.16)}
+.town-btn:last-child{grid-column:1/-1}
+.navette-people{padding-top:2px}
+.navette-people>strong{display:block;font-size:22px;margin-bottom:8px}
+#navettePeopleSlider{width:100%;accent-color:#c51f3a}
+.navette-preview{margin:18px 0;padding:18px;border-radius:19px;border:1px solid rgba(197,31,58,.45);background:linear-gradient(135deg,rgba(197,31,58,.13),rgba(255,255,255,.035))}
+.preview-title{font-size:12px;letter-spacing:1.5px;font-weight:900;opacity:.8}
+.route{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:13px 0;font-size:18px;font-weight:800}
+.route strong{opacity:.65}
+.preview-meta{display:flex;justify-content:space-between;gap:12px;font-size:13px;opacity:.8}
+.preview-total{margin-top:13px;padding-top:12px;border-top:1px solid rgba(255,255,255,.10);display:flex;justify-content:space-between}
+.navette-form{margin-top:16px}
+.navette-form textarea{display:block;width:100%;box-sizing:border-box;margin-top:6px;padding:12px 13px;border-radius:12px;border:1px solid rgba(255,255,255,.12);background:rgba(0,0,0,.22);color:inherit;font:inherit;resize:vertical}
+@media(max-width:600px){.town-grid{grid-template-columns:1fr 1fr}.route{font-size:16px}}

@@ -135,3 +135,56 @@ Referente: Mattia Gipsi`;
   const whatsappUrl='https://wa.me/39371460364?text='+encodeURIComponent(message);
   window.open(whatsappUrl,'_blank','noopener');
 }
+
+/* v9 — Navette interactions */
+function updateNavette(){
+  const slider=document.getElementById('navettePeopleSlider');
+  if(!slider) return;
+  const people=parseInt(slider.value,10)||1;
+  const town=document.querySelector('.town-btn.active')?.dataset.town || '';
+  const value=document.getElementById('navettePeopleValue');
+  const summary=document.getElementById('navetteSummaryPeople');
+  const townValue=document.getElementById('navetteTownValue');
+  const cost=document.getElementById('navetteCost');
+  if(value) value.textContent=people;
+  if(summary) summary.textContent=people;
+  if(townValue) townValue.textContent=town || 'Seleziona il paese';
+  if(cost) cost.textContent=euro(people);
+}
+function sendNavetteWhatsApp(){
+  const town=document.querySelector('.town-btn.active')?.dataset.town || '';
+  const people=parseInt(document.getElementById('navettePeopleSlider')?.value||'1',10);
+  const name=(document.getElementById('navetteName')?.value||'').trim();
+  const phone=(document.getElementById('navettePhone')?.value||'').trim();
+  const time=document.getElementById('navetteTime')?.value||'Non indicato';
+  const notes=(document.getElementById('navetteNotes')?.value||'').trim();
+  if(!town){ toast('Seleziona il paese di partenza.'); return; }
+  if(!name || !phone){ toast('Inserisci nome e numero di telefono.'); return; }
+  const msg=`🚐 RICHIESTA NAVETTA MCA
+
+👤 Nome: ${name}
+📞 Telefono: ${phone}
+📍 Partenza: ${town}
+👥 Persone: ${people}
+🕐 Orario indicativo: ${time}
+💰 Servizio: €${people.toFixed(2)} (€1/persona)
+${notes ? `📝 Note: ${notes}\n` : ''}
+Pagamento: contanti
+Referente: Mattia Gipsi`;
+  window.open('https://wa.me/39371460364?text='+encodeURIComponent(msg),'_blank','noopener');
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  const slider=document.getElementById('navettePeopleSlider');
+  if(slider) slider.addEventListener('input',updateNavette);
+  document.querySelectorAll('.town-btn').forEach(btn=>btn.addEventListener('click',()=>{
+    document.querySelectorAll('.town-btn').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    updateNavette();
+  }));
+  document.getElementById('requestNavetteBtn')?.addEventListener('click',()=>{
+    const box=document.getElementById('navetteForm');
+    if(box){box.hidden=false;box.style.display='block';box.scrollIntoView({behavior:'smooth',block:'center'});}
+  });
+  document.getElementById('sendNavetteWhatsApp')?.addEventListener('click',sendNavetteWhatsApp);
+  updateNavette();
+});

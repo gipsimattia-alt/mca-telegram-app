@@ -5,10 +5,65 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <title>MCA Nightlife</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=9">
 </head>
 <body>
 <main class="app">
+
+<section id="navetteSection" class="navette-section card">
+  <div class="section-kicker">🚐 MCA MOBILITY</div>
+  <h2>Organizza la tua navetta</h2>
+  <p class="muted">Parti dal tuo paese e arriva a Elite senza pensieri.</p>
+
+  <div class="navette-step">
+    <div class="step-title"><span>1</span><strong>📍 Da dove parti?</strong></div>
+    <div class="town-grid">
+      <button type="button" class="town-btn" data-town="Montefiascone">Montefiascone</button>
+      <button type="button" class="town-btn" data-town="Marta">Marta</button>
+      <button type="button" class="town-btn" data-town="Piansano">Piansano</button>
+      <button type="button" class="town-btn" data-town="Valentano">Valentano</button>
+      <button type="button" class="town-btn" data-town="Altro paese">Altro paese</button>
+    </div>
+  </div>
+
+  <div class="navette-step">
+    <div class="step-title"><span>2</span><strong>👥 Quante persone?</strong></div>
+    <div class="navette-people">
+      <strong><span id="navettePeopleValue">8</span> persone</strong>
+      <input id="navettePeopleSlider" type="range" min="1" max="30" value="8" step="1" aria-label="Numero persone navetta">
+      <div class="range-labels"><span>1</span><span>30</span></div>
+    </div>
+  </div>
+
+  <div class="navette-preview">
+    <div class="preview-title">🚌 LA TUA NAVETTA</div>
+    <div class="route"><span id="navetteTownValue">Seleziona il paese</span><strong>→</strong><span>Elite</span></div>
+    <div class="preview-meta"><span>👥 <b id="navetteSummaryPeople">8</b> persone</span><span>💶 €1 / persona</span></div>
+    <div class="preview-total">Servizio navetta: <strong id="navetteCost">€8</strong></div>
+  </div>
+
+  <button class="primary full" type="button" id="requestNavetteBtn">🚐 RICHIEDI NAVETTA</button>
+
+  <div id="navetteForm" class="request-contact navette-form" hidden>
+    <h3>📲 Richiesta navetta</h3>
+    <p class="muted">Inserisci i dati e invia la richiesta direttamente a Mattia su WhatsApp.</p>
+    <label>Nome e cognome
+      <input id="navetteName" type="text" placeholder="Es. Mario Rossi" autocomplete="name">
+    </label>
+    <label>Numero di telefono
+      <input id="navettePhone" type="tel" placeholder="Es. 3331234567" autocomplete="tel">
+    </label>
+    <label>Orario indicativo di partenza
+      <input id="navetteTime" type="time">
+    </label>
+    <label>Note
+      <textarea id="navetteNotes" rows="3" placeholder="Eventuali esigenze del gruppo"></textarea>
+    </label>
+    <button class="whatsapp-button full" type="button" id="sendNavetteWhatsApp">💬 INVIA RICHIESTA SU WHATSAPP</button>
+  </div>
+</section>
+
+
   <header class="topbar">
     <img src="mca-logo.jpg" class="logo" alt="MCA Production">
     <div><div class="eyebrow">MCA PRODUCTION</div><h1>MCA</h1></div>
@@ -19,7 +74,7 @@
     <h2>Elite Saturday</h2>
     <p>Sabato • 23:00 • Discoteca Elite</p>
     <div class="actions">
-      <button class="primary" onclick="openSection('tickets')">🚪 Entrate</button>
+      <button class="primary" onclick="openSection('tickets')">🚐 Navette</button>
       <button onclick="openSection('tables')">🥂 Tavoli</button>
     </div>
   </section>
@@ -125,7 +180,7 @@
 <section class="card">
     <h3>Come funziona</h3>
     <div class="steps">
-      <div><b>1</b><span>Scegli biglietti o tavolo</span></div>
+      <div><b>1</b><span>Scegli tavolo o navetta</span></div>
       <div><b>2</b><span>Invia la richiesta</span></div>
       <div><b>3</b><span>Mattia conferma e indica il pagamento</span></div>
     </div>
@@ -133,7 +188,7 @@
   </section>
 
   <section id="tickets" class="card hidden">
-    <h3>🚪 Entrate</h3>
+    <h3>🚐 Navette</h3>
     <label for="ticketQty">Quantità</label>
     <select id="ticketQty">
       <option>1</option><option>2</option><option>3</option><option>4</option>
@@ -174,12 +229,12 @@
 
   <nav>
     <button onclick="scrollTopApp()">⌂ Home</button>
-    <button onclick="openSection('tickets')">🚪 Entrate</button>
+    <button onclick="openSection('tickets')">🚐 Navette</button>
     <button onclick="openSection('tables')">🥂 Tavoli</button>
     <button onclick="document.querySelector('.contact').scrollIntoView({behavior:'smooth'})">👤 Mattia</button>
   </nav>
 </main>
 <div id="toast" aria-live="polite"></div>
-<script src="app.js?v=8"></script>
+<script src="app.js?v=9"></script>
 </body>
 </html>

@@ -72,3 +72,12 @@ Per l'invio completamente automatico senza che l'utente prema "Invia" serve un b
 ## Versione v8 — Spazio CTA mobile
 - Riservato spazio sufficiente sopra la barra fissa Telegram.
 - Il pulsante RICHIEDI TAVOLO e il modulo WhatsApp non vengono più coperti.
+
+
+## Versione v9 — Navette
+- Sostituita la sezione Entrate con Navette.
+- Scelta paese: Montefiascone, Marta, Piansano, Valentano, Altro paese.
+- Barra persone 1–30.
+- Calcolo automatico €1/persona.
+- Richiesta navetta con nome, telefono, orario e note.
+- Invio richiesta esclusivamente via WhatsApp a Mattia.
