@@ -16,7 +16,7 @@
 .bottle-list input{width:18px;height:18px;accent-color:#c51f3a}
 .bottle-list span{font-size:14px}
 .bottle-list b{font-size:14px}
-.table-summary{position:sticky;bottom:10px;margin-top:22px;padding:16px;border:1px solid rgba(255,255,255,.14);border-radius:20px;background:rgba(18,18,20,.96);backdrop-filter:blur(12px);box-shadow:0 10px 35px rgba(0,0,0,.35)}
+.table-summary{position:relative;margin-top:22px;padding:16px;border:1px solid rgba(255,255,255,.14);border-radius:20px;background:rgba(18,18,20,.96);backdrop-filter:blur(12px);box-shadow:0 10px 35px rgba(0,0,0,.35)}
 .table-summary>div{display:flex;justify-content:space-between;gap:12px;margin:6px 0}
 .table-summary .per-person{padding-top:10px;margin-top:10px;border-top:1px solid rgba(255,255,255,.1);font-size:16px}
 .table-summary .per-person strong{font-size:24px}
@@ -29,3 +29,13 @@
 .navetta-check{display:flex!important;align-items:center;gap:8px}
 .navetta-check input{width:18px;height:18px;accent-color:#c51f3a}
 .whatsapp-button{margin-top:14px;border:0;border-radius:14px;padding:14px 16px;background:#25D366;color:#07140b;font-weight:900;font-size:14px;cursor:pointer}
+
+/* v6: keep CTA and request form clear of the fixed bottom navigation */
+main, body{padding-bottom:110px}
+.table-config{padding-bottom:28px}
+.table-summary{z-index:1;margin-bottom:18px}
+.request-contact{position:relative;z-index:2;margin-bottom:30px}
+@media (max-width:600px){
+  .table-summary{padding-bottom:18px}
+  .request-contact{scroll-margin-top:30px}
+}

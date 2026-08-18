@@ -55,3 +55,9 @@ Per l'invio completamente automatico senza che l'utente prema "Invia" serve un b
 - La richiesta viene inviata esclusivamente tramite WhatsApp.
 - Il messaggio contiene persone, bottiglie, totale, spesa a persona, paese di partenza e navetta.
 - Contatto WhatsApp: Mattia Gipsi.
+
+
+## Versione v6 — Fix mobile
+- Rimosso lo sticky del riepilogo che copriva il pulsante.
+- Aggiunto spazio per la barra di navigazione mobile.
+- Il modulo richiesta tavolo viene portato in una posizione visibile dopo il click.
