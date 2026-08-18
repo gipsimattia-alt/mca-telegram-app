@@ -24,7 +24,79 @@
     </div>
   </section>
 
-  <section class="card">
+  
+<section id="tableConfigurator" class="table-config card">
+  <div class="section-kicker">🥂 ELITE</div>
+  <h2>Prenota il tuo tavolo</h2>
+  <p class="muted">Componi il tavolo, scegli le bottiglie e guarda subito la spesa a persona.</p>
+
+  <div class="people-box">
+    <div class="people-head">
+      <span>Quante persone?</span>
+      <strong><span id="peopleValue">8</span> persone</strong>
+    </div>
+    <input id="peopleSlider" type="range" min="1" max="30" value="8" step="1" aria-label="Numero persone">
+    <div class="range-labels"><span>1</span><span>30</span></div>
+  </div>
+
+  <div class="bottle-category">
+    <h3>🍸 VODKA</h3>
+    <div class="bottle-list">
+      <label><input type="checkbox" data-price="100" data-name="Absolut 0.7 L"><span>Absolut 0.7 L</span><b>€100</b></label>
+      <label><input type="checkbox" data-price="120" data-name="Absolut 1.0 L"><span>Absolut 1.0 L</span><b>€120</b></label>
+      <label><input type="checkbox" data-price="80" data-name="Eristoff 0.7 L"><span>Eristoff 0.7 L</span><b>€80</b></label>
+      <label><input type="checkbox" data-price="130" data-name="Sky 1 L"><span>Sky 1 L</span><b>€130</b></label>
+      <label><input type="checkbox" data-price="160" data-name="Belvedere 0.7 L"><span>Belvedere 0.7 L</span><b>€160</b></label>
+      <label><input type="checkbox" data-price="280" data-name="Belvedere 1.75 L"><span>Belvedere 1.75 L</span><b>€280</b></label>
+      <label><input type="checkbox" data-price="650" data-name="Belvedere 3 L"><span>Belvedere 3 L</span><b>€650</b></label>
+      <label><input type="checkbox" data-price="150" data-name="Grey Goose 0.7 L"><span>Grey Goose 0.7 L</span><b>€150</b></label>
+      <label><input type="checkbox" data-price="260" data-name="Grey Goose 1.5 L"><span>Grey Goose 1.5 L</span><b>€260</b></label>
+      <label><input type="checkbox" data-price="600" data-name="Grey Goose 3 L"><span>Grey Goose 3 L</span><b>€600</b></label>
+    </div>
+  </div>
+
+  <div class="bottle-category">
+    <h3>🍸 GIN</h3>
+    <div class="bottle-list">
+      <label><input type="checkbox" data-price="80" data-name="Bosford 0.7 L"><span>Bosford 0.7 L</span><b>€80</b></label>
+      <label><input type="checkbox" data-price="110" data-name="Bosford 1.0 L"><span>Bosford 1.0 L</span><b>€110</b></label>
+      <label><input type="checkbox" data-price="110" data-name="Bombay 0.7 L"><span>Bombay 0.7 L</span><b>€110</b></label>
+      <label><input type="checkbox" data-price="130" data-name="Bombay 1.0 L"><span>Bombay 1.0 L</span><b>€130</b></label>
+      <label><input type="checkbox" data-price="120" data-name="Bulldog 0.7 L"><span>Bulldog 0.7 L</span><b>€120</b></label>
+      <label><input type="checkbox" data-price="140" data-name="Gin Mare 0.7 L"><span>Gin Mare 0.7 L</span><b>€140</b></label>
+      <label><input type="checkbox" data-price="160" data-name="Gin Mare Capri 0.7 L"><span>Gin Mare Capri 0.7 L</span><b>€160</b></label>
+    </div>
+  </div>
+
+  <div class="bottle-category">
+    <h3>🥂 BOLLICINE</h3>
+    <div class="bottle-list">
+      <label><input type="checkbox" data-price="80" data-name="Ferrari 0.7 L"><span>Ferrari 0.7 L</span><b>€80</b></label>
+      <label><input type="checkbox" data-price="60" data-name="Prosecco Prima Scelta 0.7 L"><span>Prosecco Prima Scelta 0.7 L</span><b>€60</b></label>
+      <label><input type="checkbox" data-price="40" data-name="Prosecco Seconda Scelta 0.7 L"><span>Prosecco Seconda Scelta 0.7 L</span><b>€40</b></label>
+      <label><input type="checkbox" data-price="140" data-name="Ferrari Blanc de Blancs 1.5 L"><span>Ferrari Blanc de Blancs 1.5 L</span><b>€140</b></label>
+    </div>
+  </div>
+
+  <div class="bottle-category">
+    <h3>🥃 EXTRA</h3>
+    <div class="bottle-list">
+      <label><input type="checkbox" data-price="80" data-name="Rum Pampero 0.7 L"><span>Rum Pampero 0.7 L</span><b>€80</b></label>
+      <label><input type="checkbox" data-price="70" data-name="Cutty Sark 0.7 L"><span>Cutty Sark 0.7 L</span><b>€70</b></label>
+      <label><input type="checkbox" data-price="100" data-name="Jägermeister 0.7 L"><span>Jägermeister 0.7 L</span><b>€100</b></label>
+    </div>
+  </div>
+
+  <div class="table-summary">
+    <div><span>👥 Persone</span><strong id="summaryPeople">8</strong></div>
+    <div><span>🍾 Bottiglie</span><strong id="summaryBottles">0</strong></div>
+    <div><span>💰 Totale tavolo</span><strong id="summaryTotal">€0</strong></div>
+    <div class="per-person"><span>Spesa a persona</span><strong id="summaryPerPerson">€0,00</strong></div>
+    <button class="primary full" type="button" onclick="submitTableRequest()">RICHIEDI TAVOLO</button>
+  </div>
+</section>
+
+<section class="card">
     <h3>Come funziona</h3>
     <div class="steps">
       <div><b>1</b><span>Scegli biglietti o tavolo</span></div>

@@ -39,3 +39,12 @@ Non contiene token/API key.
 
 ### Nota tecnica
 Per l'invio completamente automatico senza che l'utente prema "Invia" serve un backend. Inoltre, un bot Telegram non può avviare una conversazione con un utente solo conoscendo il suo username: occorre che l'utente abbia avviato il bot oppure che sia disponibile il suo `chat_id`. Per WhatsApp, l'invio automatico lato server richiede WhatsApp Business Platform/API o un provider.
+
+
+## Versione v4 — Configuratore Tavoli
+- Barra persone da 1 a 30.
+- Listino diviso in Vodka, Gin, Bollicine ed Extra.
+- Selezione multipla delle bottiglie.
+- Totale tavolo calcolato in tempo reale.
+- Spesa per persona calcolata automaticamente.
+- Richiesta tavolo con riepilogo completo.
