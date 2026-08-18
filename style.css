@@ -180,3 +180,50 @@ main, body{padding-bottom:110px}
 .town-result-main small{font-size:11px;color:#999aa0}
 .town-result-arrow{font-size:25px;opacity:.5}
 .town-empty{margin-top:12px;padding:12px;border-radius:13px;background:#202126;color:#999;font-size:13px}
+
+/* FINAL — clearly clickable Home cards */
+.home-actions{gap:12px}
+.home-action{
+  position:relative;
+  min-height:92px;
+  cursor:pointer;
+  user-select:none;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .12s ease, border-color .12s ease, background .12s ease, box-shadow .12s ease;
+  box-shadow:0 8px 24px rgba(0,0,0,.18);
+}
+.home-action::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:22px;
+  pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);
+}
+.home-action:hover{
+  transform:translateY(-1px);
+  border-color:rgba(197,31,58,.75);
+  box-shadow:0 12px 30px rgba(0,0,0,.28);
+}
+.home-action:active{
+  transform:scale(.985);
+  background:rgba(197,31,58,.14);
+}
+.home-action:focus-visible{
+  outline:2px solid #c60032;
+  outline-offset:3px;
+}
+.home-action-arrow{
+  position:absolute;
+  right:18px;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:32px;
+  line-height:1;
+  opacity:.55;
+}
+.home-action-copy{padding-right:28px}
+.home-action.contact{border-color:rgba(255,255,255,.13)}
+.home-action.contact:hover{border-color:rgba(255,255,255,.3)}
+.home-event{margin-bottom:4px}
+.request-note{margin:8px 0 0}

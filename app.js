@@ -321,3 +321,25 @@ document.addEventListener('DOMContentLoaded',()=>{
   updateEliteCountdown();
   setInterval(updateEliteCountdown,1000);
 });
+
+/* FINAL — Home CTA affordance + navigation */
+function openMCAContact(){
+  window.open('https://wa.me/393714600364?text='+encodeURIComponent('Ciao, vorrei informazioni su MCA / Elite.'),'_blank','noopener');
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  document.querySelectorAll('.home-action[data-target]').forEach(card=>{
+    card.setAttribute('role','button');
+    card.setAttribute('tabindex','0');
+    const go=()=>goTo(card.dataset.target);
+    card.addEventListener('click',go);
+    card.addEventListener('keydown',e=>{
+      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); go(); }
+    });
+  });
+  document.querySelectorAll('.home-action.contact').forEach(card=>{
+    card.addEventListener('click',openMCAContact);
+    card.addEventListener('keydown',e=>{
+      if(e.key==='Enter' || e.key===' '){ e.preventDefault(); openMCAContact(); }
+    });
+  });
+});
