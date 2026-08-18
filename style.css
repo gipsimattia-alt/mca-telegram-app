@@ -80,3 +80,103 @@ main, body{padding-bottom:110px}
 @media(max-width:600px){.town-grid{grid-template-columns:1fr 1fr}.route{font-size:16px}}
 
 /* MCA v10 — FINAL NAVETTE UI */
+
+/* v12 — Home-first navigation */
+.home-section{padding:18px 0 150px}
+.home-welcome{padding:10px 4px 20px}
+.home-welcome h2{font-size:38px;margin:0 0 6px}
+.home-actions{display:grid;gap:14px}
+.home-action{width:100%;display:flex;align-items:center;gap:16px;text-align:left;padding:20px;border:1px solid rgba(255,255,255,.10);border-radius:22px;background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.018));color:inherit}
+.home-action-icon{font-size:34px;width:48px;text-align:center}
+.home-action-copy{display:flex;flex-direction:column;gap:4px}
+.home-action-copy strong{font-size:21px}
+.home-action-copy small{font-size:14px;opacity:.65}
+.home-action.navette{border-color:rgba(197,31,58,.45)}
+.home-action.tavolo{border-color:rgba(255,255,255,.16)}
+.home-action.contact strong{font-size:18px}
+.home-event{margin-top:18px;padding:18px;border-radius:20px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column;gap:5px}
+.home-event .section-kicker{letter-spacing:1.5px;font-size:11px;opacity:.7}
+.home-event strong{font-size:21px}
+.home-event span{opacity:.65;font-size:14px}
+.page-section{margin-top:18px}
+
+/* v14 — Homepage live countdown */
+.countdown-card{
+  margin-top:18px;
+  padding:22px 18px;
+  border:1px solid rgba(197,31,58,.55);
+  background:linear-gradient(145deg,rgba(197,31,58,.16),rgba(255,255,255,.035));
+  border-radius:22px;
+  text-align:center;
+}
+.countdown-card strong{
+  display:block;
+  font-size:30px;
+  margin:6px 0 4px;
+}
+.countdown-card>span{
+  display:block;
+  color:var(--muted,#aaa);
+  font-size:14px;
+}
+.countdown{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:18px;
+}
+.countdown>div{
+  padding:12px 4px 10px;
+  border-radius:14px;
+  background:rgba(0,0,0,.24);
+  border:1px solid rgba(255,255,255,.08);
+}
+.countdown b{
+  display:block;
+  font-size:25px;
+  line-height:1;
+}
+.countdown small{
+  display:block;
+  margin-top:7px;
+  font-size:9px;
+  letter-spacing:1px;
+  opacity:.7;
+}
+
+/* v15 — Searchable MCA Mobility town selector */
+.town-search-wrap{position:relative;margin-top:4px}
+.town-search{
+  width:100%;
+  padding:15px 44px 15px 15px;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,.14);
+  background:#202126;
+  color:#fff;
+  font-size:16px;
+  outline:none;
+}
+.town-search:focus{border-color:#c51f3a;box-shadow:0 0 0 3px rgba(197,31,58,.12)}
+.town-search-icon{position:absolute;right:15px;top:50%;transform:translateY(-50%);font-size:22px;opacity:.55;pointer-events:none}
+.town-hint{margin:9px 2px 0;color:#85858c;font-size:11px;line-height:1.4}
+.town-results{display:grid;gap:8px;margin-top:12px}
+.town-result{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  width:100%;
+  text-align:left;
+  padding:13px 14px;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,.09);
+  background:#202126;
+}
+.town-result:hover,.town-result.active{
+  border-color:rgba(197,31,58,.9);
+  background:rgba(197,31,58,.12);
+}
+.town-result-main{display:flex;flex-direction:column;gap:4px}
+.town-result-main strong{font-size:15px}
+.town-result-main small{font-size:11px;color:#999aa0}
+.town-result-arrow{font-size:25px;opacity:.5}
+.town-empty{margin-top:12px;padding:12px;border-radius:13px;background:#202126;color:#999;font-size:13px}

@@ -34,7 +34,7 @@ Non contiene token/API key.
 - "Elite Points" rinominato in "MCA Points".
 - Tavoli e Invita amici mantenuti.
 - Referente: Mattia Gipsi.
-- Richiesta con due canali: WhatsApp `+39 371 460 364` oppure Telegram `@met_dev`.
+- Richiesta con due canali: WhatsApp `+39 371 460 0364` oppure Telegram `@met_dev`.
 - Le richieste vengono precompilate e l'utente apre il canale scelto per inviarle.
 
 ### Nota tecnica
@@ -88,3 +88,39 @@ Per l'invio completamente automatico senza che l'utente prema "Invia" serve un b
 - La sezione principale è "Navette".
 - Menu e testi aggiornati.
 - Cache busting v10 per CSS/JS.
+
+
+## v12 — Home first
+- Apertura sulla Home.
+- Home con Navetta, Tavolo e contatto +39 371 460 0364 senza nome.
+- Navetta usa 🚐; Tavolo usa 🍾.
+- Le sezioni operative sono separate dalla Home.
+
+
+## Versione v13 — Unica pagina Tavolo
+- Rimossa la vecchia azione/struttura Tavoli duplicata nell'hero.
+- Rimane una sola pagina operativa: `tableConfigurator`.
+- Rimossi dal JavaScript i vecchi riferimenti a pagine ticket/tables non più utilizzate.
+
+
+## Versione v14 — Countdown Home
+- Homepage con prossima serata Elite.
+- Countdown dinamico alla prossima serata del venerdì alle 23:00.
+- Giorni, ore, minuti e secondi aggiornati in tempo reale.
+- Data della prossima serata mostrata automaticamente in italiano.
+
+
+## Versione v15 — Ricerca paesi navetta
+- Ricerca paese con riconoscimento mentre si scrive.
+- Ricerca parziale: bastano alcune lettere.
+- Risultati ordinati per vicinanza a Elite.
+- Distanza indicativa mostrata per ogni paese.
+- Selezione del paese con un tap.
+- I dati della richiesta WhatsApp includono anche la distanza indicativa.
+- Area di riferimento: zona Elite, Località Alfina, Castel Viscardo.
+
+
+## Versione v16 — Area navette ampliata
+La ricerca navetta ora comprende una lista più ampia di comuni e paesi dell'area di Castel Viscardo/Elite, ordinata per distanza indicativa. La ricerca resta parziale e riconosce il paese anche digitando poche lettere.
+
+Le distanze mostrate sono indicative e basate sulla distanza in linea d'aria dal centro urbano di Castel Viscardo, non sul percorso stradale. Le fonti consultate riportano, tra gli altri, Castel Giorgio, Allerona, Orvieto, Acquapendente, Bolsena, Bagnoregio, Lubriano, Gradoli e altri comuni limitrofi. 

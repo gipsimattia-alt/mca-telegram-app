@@ -1,3 +1,14 @@
+
+function showPage(id){
+  const pages=['homeSection','navetteSection','tableConfigurator'];
+  pages.forEach(pid=>{
+    const el=document.getElementById(pid);
+    if(el) el.classList.toggle('hidden', pid!==id);
+  });
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function goHome(){ showPage('homeSection'); }
+
 function getTG(){
   return window.Telegram && Telegram.WebApp ? Telegram.WebApp : null;
 }
@@ -7,32 +18,6 @@ function toast(msg){
   t.style.display='block';
   clearTimeout(window._tt);
   window._tt=setTimeout(()=>t.style.display='none',3500);
-}
-function openSection(id){
-  document.querySelectorAll('.card.hidden').forEach(x=>x.classList.add('hidden'));
-  const el=document.getElementById(id);
-  if(el){el.classList.remove('hidden');el.scrollIntoView({behavior:'smooth',block:'center'});}
-}
-function requestTicket(){
-  const qty=document.getElementById('ticketQty')?.value || '1';
-  window.requestDraft=`MCA / Elite - RICHIESTA Navette\nNome: Cliente Telegram\nEntrate: ${qty}\nPagamento: contanti\nReferente: Mattia Gipsi`;
-  document.getElementById('requestContact')?.scrollIntoView({behavior:'smooth',block:'center'});
-  toast('Richiesta pronta. Scegli WhatsApp o Telegram.');
-}
-function requestTable(){
-  const p=document.getElementById('people')?.value || '';
-  const n=document.getElementById('name')?.value || 'Cliente Telegram';
-  window.requestDraft=`MCA / Elite - RICHIESTA TAVOLO\nNome: ${n}\nPersone: ${p}\nPagamento: contanti\nReferente: Mattia Gipsi`;
-  document.getElementById('requestContact')?.scrollIntoView({behavior:'smooth',block:'center'});
-  toast('Richiesta pronta. Scegli WhatsApp o Telegram.');
-}
-function sendWhatsApp(){
-  const text=encodeURIComponent(window.requestDraft || 'Ciao Mattia, vorrei informazioni per la prossima serata MCA / Elite.');
-  window.open('https://wa.me/39371460364?text='+text,'_blank');
-}
-function sendTelegram(){
-  const text=encodeURIComponent(window.requestDraft || 'Ciao Mattia, vorrei informazioni per la prossima serata MCA / Elite.');
-  window.open('https://t.me/met_dev?text='+text,'_blank');
 }
 function shareMCA(){
   const text='Vieni con me alla prossima serata MCA / Elite!';
@@ -46,7 +31,7 @@ function shareMCA(){
     toast('Testo copiato: ora puoi condividerlo.');
   }
 }
-function scrollTopApp(){window.scrollTo({top:0,behavior:'smooth'});}
+function scrollTopApp(){showPage('homeSection');}
 document.addEventListener('DOMContentLoaded',()=>{
   const tg=getTG();
   if(tg){tg.ready();tg.expand();}
@@ -132,59 +117,207 @@ ${items}
 Pagamento: contanti
 Referente: Mattia Gipsi`;
 
-  const whatsappUrl='https://wa.me/39371460364?text='+encodeURIComponent(message);
+  const whatsappUrl='https://wa.me/393714600364?text='+encodeURIComponent(message);
   window.open(whatsappUrl,'_blank','noopener');
 }
 
-/* v9 — Navette interactions */
+/* v15 — MCA Navette: searchable nearby towns */
+const MCA_TOWNS = [
+  {name:'Castel Giorgio', distance:5.6},
+  {name:'Allerona', distance:6.8},
+  {name:'Orvieto', distance:10.0},
+  {name:'Acquapendente', distance:11.0},
+  {name:'San Lorenzo Nuovo', distance:10.6},
+  {name:'Ficulle', distance:10.6},
+  {name:'Porano', distance:11.6},
+  {name:'Bolsena', distance:12.2},
+  {name:'Grotte di Castro', distance:13.5},
+  {name:'Fabro', distance:13.6},
+  {name:'Proceno', distance:13.8},
+  {name:'Parrano', distance:15.5},
+  {name:'Bagnoregio', distance:15.7},
+  {name:'Lubriano', distance:15.9},
+  {name:'Onano', distance:16.4},
+  {name:'San Casciano dei Bagni', distance:16.5},
+  {name:'Gradoli', distance:16.9},
+  {name:'Monteleone d’Orvieto', distance:19.5},
+  {name:'Latera', distance:19.7},
+  {name:'Baschi', distance:20.1},
+  {name:'Castiglione in Teverina', distance:20.5},
+  {name:'Civitella d’Agliano', distance:22.7},
+  {name:'Montefiascone', distance:23.7},
+  {name:'Sorano', distance:24.6},
+  {name:'Montecchio', distance:25.6},
+  {name:'San Venanzo', distance:25.6},
+  {name:'Marta', distance:25.2},
+  {name:'Valentano', distance:25.3},
+  {name:'Piansano', distance:29.2},
+  {name:'Capodimonte', distance:28.0},
+  {name:'Ischia di Castro', distance:31.0},
+  {name:'Celleno', distance:31.0},
+  {name:'Graffignano', distance:32.0},
+  {name:'Tuscania', distance:38.0},
+  {name:'Viterbo', distance:39.0},
+  {name:'Farnese', distance:38.0},
+  {name:'Cellere', distance:38.0}
+];
+
+function normalizeTown(value){
+  return (value||'').toLocaleLowerCase('it-IT')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .trim();
+}
+function townMatches(town, query){
+  const q=normalizeTown(query);
+  if(!q) return true;
+  return normalizeTown(town.name).includes(q);
+}
+function renderTownResults(query=''){
+  const box=document.getElementById('townResults');
+  const empty=document.getElementById('townEmpty');
+  if(!box) return;
+
+  const matches=MCA_TOWNS
+    .filter(t=>townMatches(t,query))
+    .sort((a,b)=>a.distance-b.distance);
+
+  box.innerHTML=matches.map(t=>`
+    <button class="town-result" type="button" data-town="${t.name}">
+      <span class="town-result-main">
+        <strong>${t.name}</strong>
+        <small>📍 circa ${t.distance.toFixed(1).replace('.',',')} km da Elite</small>
+      </span>
+      <span class="town-result-arrow">›</span>
+    </button>
+  `).join('');
+
+  if(empty) empty.classList.toggle('hidden', matches.length>0);
+  box.querySelectorAll('.town-result').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      selectTown(btn.dataset.town);
+    });
+  });
+}
+function selectTown(townName){
+  const town=MCA_TOWNS.find(t=>t.name===townName);
+  document.querySelectorAll('.town-result').forEach(x=>x.classList.remove('active'));
+  const search=document.getElementById('townSearch');
+  if(search) search.value=townName;
+  if(town){
+    const chosen=document.querySelector(`.town-result[data-town="${CSS.escape(townName)}"]`);
+    chosen?.classList.add('active');
+  }
+  window.selectedNavetteTown=townName;
+  updateNavette();
+}
 function updateNavette(){
   const slider=document.getElementById('navettePeopleSlider');
   if(!slider) return;
   const people=parseInt(slider.value,10)||1;
-  const town=document.querySelector('.town-btn.active')?.dataset.town || '';
+  const townName=window.selectedNavetteTown || '';
   const value=document.getElementById('navettePeopleValue');
   const summary=document.getElementById('navetteSummaryPeople');
   const townValue=document.getElementById('navetteTownValue');
   const cost=document.getElementById('navetteCost');
+  const distanceEl=document.getElementById('navetteTownDistance');
+  const town=MCA_TOWNS.find(t=>t.name===townName);
+
   if(value) value.textContent=people;
   if(summary) summary.textContent=people;
-  if(townValue) townValue.textContent=town || 'Seleziona il paese';
+  if(townValue) townValue.textContent=townName || 'Seleziona il paese';
   if(cost) cost.textContent=euro(people);
+  if(distanceEl) distanceEl.textContent=town ? `📍 circa ${town.distance.toFixed(1).replace('.',',')} km da Elite` : '';
 }
 function sendNavetteWhatsApp(){
-  const town=document.querySelector('.town-btn.active')?.dataset.town || '';
+  const town=window.selectedNavetteTown || '';
   const people=parseInt(document.getElementById('navettePeopleSlider')?.value||'1',10);
   const name=(document.getElementById('navetteName')?.value||'').trim();
   const phone=(document.getElementById('navettePhone')?.value||'').trim();
   const time=document.getElementById('navetteTime')?.value||'Non indicato';
   const notes=(document.getElementById('navetteNotes')?.value||'').trim();
-  if(!town){ toast('Seleziona il paese di partenza.'); return; }
+  if(!town){ toast('Cerca e seleziona il paese di partenza.'); return; }
   if(!name || !phone){ toast('Inserisci nome e numero di telefono.'); return; }
+  const townData=MCA_TOWNS.find(t=>t.name===town);
   const msg=`🚐 RICHIESTA NAVETTA MCA
 
 👤 Nome: ${name}
 📞 Telefono: ${phone}
-📍 Partenza: ${town}
+📍 Partenza: ${town}${townData ? ` (${townData.distance.toFixed(1).replace('.',',')} km circa da Elite)` : ''}
 👥 Persone: ${people}
 🕐 Orario indicativo: ${time}
 💰 Servizio: €${people.toFixed(2)} (€1/persona)
 ${notes ? `📝 Note: ${notes}\n` : ''}
 Pagamento: contanti
 Referente: Mattia Gipsi`;
-  window.open('https://wa.me/39371460364?text='+encodeURIComponent(msg),'_blank','noopener');
+  window.open('https://wa.me/393714600364?text='+encodeURIComponent(msg),'_blank','noopener');
 }
 document.addEventListener('DOMContentLoaded',()=>{
   const slider=document.getElementById('navettePeopleSlider');
   if(slider) slider.addEventListener('input',updateNavette);
-  document.querySelectorAll('.town-btn').forEach(btn=>btn.addEventListener('click',()=>{
-    document.querySelectorAll('.town-btn').forEach(x=>x.classList.remove('active'));
-    btn.classList.add('active');
-    updateNavette();
-  }));
+
+  const search=document.getElementById('townSearch');
+  if(search){
+    renderTownResults('');
+    search.addEventListener('input',()=>renderTownResults(search.value));
+    search.addEventListener('focus',()=>renderTownResults(search.value));
+  }
+
   document.getElementById('requestNavetteBtn')?.addEventListener('click',()=>{
     const box=document.getElementById('navetteForm');
-    if(box){box.hidden=false;box.style.display='block';box.scrollIntoView({behavior:'smooth',block:'center'});}
+    if(box){
+      box.hidden=false;
+      box.style.display='block';
+      box.scrollIntoView({behavior:'smooth',block:'center'});
+    }
   });
   document.getElementById('sendNavetteWhatsApp')?.addEventListener('click',sendNavetteWhatsApp);
   updateNavette();
+});
+
+/* v14 — Next Elite Friday countdown */
+function getNextEliteFriday(){
+  const now = new Date();
+  const target = new Date(now);
+  const day = now.getDay(); // 0 Sun ... 5 Fri
+  let daysUntil = (5 - day + 7) % 7;
+  target.setDate(now.getDate() + daysUntil);
+  target.setHours(23,0,0,0);
+
+  // If it is already Friday after 23:00, use next Friday.
+  if(daysUntil === 0 && now >= target){
+    target.setDate(target.getDate() + 7);
+  }
+  return target;
+}
+function updateEliteCountdown(){
+  const target = getNextEliteFriday();
+  const now = new Date();
+  let diff = Math.max(0, target - now);
+
+  const days = Math.floor(diff / 86400000);
+  diff %= 86400000;
+  const hours = Math.floor(diff / 3600000);
+  diff %= 3600000;
+  const minutes = Math.floor(diff / 60000);
+  const seconds = Math.floor((diff % 60000) / 1000);
+
+  const pad = n => String(n).padStart(2,'0');
+  const set = (id,v) => { const el=document.getElementById(id); if(el) el.textContent=pad(v); };
+
+  set('countDays', days);
+  set('countHours', hours);
+  set('countMinutes', minutes);
+  set('countSeconds', seconds);
+
+  const dateEl=document.getElementById('nextEventDate');
+  if(dateEl){
+    const label=new Intl.DateTimeFormat('it-IT',{
+      weekday:'long',day:'numeric',month:'long'
+    }).format(target);
+    dateEl.textContent=`${label.charAt(0).toUpperCase()+label.slice(1)} • 23:00 • Discoteca Elite`;
+  }
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  updateEliteCountdown();
+  setInterval(updateEliteCountdown,1000);
 });

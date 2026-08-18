@@ -1,240 +1,200 @@
 <!doctype html>
+<!DOCTYPE html>
+
 <html lang="it">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <title>MCA Nightlife</title>
-  <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="stylesheet" href="style.css?v=10">
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<title>MCA Nightlife</title>
+<script src="app.js?v=16"></script>
+<link href="style.css?v=16" rel="stylesheet"/>
 </head>
 <body>
-<main class="app">
+<main class="app"><header class="topbar">
+<img alt="MCA Production" class="logo" src="mca-logo.jpg"/>
+<div><div class="eyebrow">MCA PRODUCTION</div><h1>MCA</h1></div>
+</header><section class="hero">
+<div class="pill">ELITE • PROSSIMA SERATA</div>
+<h2>Elite Saturday</h2>
+<p>Sabato • 23:00 • Discoteca Elite</p>
 
-<section id="navetteSection" class="navette-section card">
-  <div class="section-kicker">🚐 MCA MOBILITY</div>
-  <h2>Organizza la tua navetta</h2>
-  <p class="muted">Parti dal tuo paese e arriva a Elite senza pensieri.</p>
-
-  <div class="navette-step">
-    <div class="step-title"><span>1</span><strong>📍 Da dove parti?</strong></div>
-    <div class="town-grid">
-      <button type="button" class="town-btn" data-town="Montefiascone">Montefiascone</button>
-      <button type="button" class="town-btn" data-town="Marta">Marta</button>
-      <button type="button" class="town-btn" data-town="Piansano">Piansano</button>
-      <button type="button" class="town-btn" data-town="Valentano">Valentano</button>
-      <button type="button" class="town-btn" data-town="Altro paese">Altro paese</button>
-    </div>
+</section><section class="home-section" id="homeSection"><div class="home-welcome"><h2>MCA</h2><p class="muted">Scegli cosa vuoi organizzare per la prossima serata.</p></div><div class="home-actions"><button class="home-action navette" onclick="showPage('navetteSection')" type="button"><span class="home-action-icon">🚐</span><span class="home-action-copy"><strong>Navetta</strong><small>Organizza il viaggio verso Elite</small></span></button><button class="home-action tavolo" onclick="showPage('tableConfigurator')" type="button"><span class="home-action-icon">🍾</span><span class="home-action-copy"><strong>Tavolo</strong><small>Componi il tuo tavolo e scegli le bottiglie</small></span></button><button class="home-action contact" onclick="window.open('https://wa.me/393714600364','_blank','noopener')" type="button"><span class="home-action-icon">📞</span><span class="home-action-copy"><strong>+39 371 460 0364</strong><small>Contattaci direttamente su WhatsApp</small></span></button></div><div class="home-event countdown-card">
+  <div class="section-kicker">🔥 PROSSIMA SERATA</div>
+  <strong id="nextEventTitle">Elite</strong>
+  <span id="nextEventDate">Prossimo venerdì • 23:00 • Discoteca Elite</span>
+  <div class="countdown" aria-label="Conto alla rovescia per la prossima serata">
+    <div><b id="countDays">00</b><small>GIORNI</small></div>
+    <div><b id="countHours">00</b><small>ORE</small></div>
+    <div><b id="countMinutes">00</b><small>MIN</small></div>
+    <div><b id="countSeconds">00</b><small>SEC</small></div>
   </div>
-
-  <div class="navette-step">
-    <div class="step-title"><span>2</span><strong>👥 Quante persone?</strong></div>
-    <div class="navette-people">
-      <strong><span id="navettePeopleValue">8</span> persone</strong>
-      <input id="navettePeopleSlider" type="range" min="1" max="30" value="8" step="1" aria-label="Numero persone navetta">
-      <div class="range-labels"><span>1</span><span>30</span></div>
-    </div>
-  </div>
-
-  <div class="navette-preview">
-    <div class="preview-title">🚌 LA TUA NAVETTA</div>
-    <div class="route"><span id="navetteTownValue">Seleziona il paese</span><strong>→</strong><span>Elite</span></div>
-    <div class="preview-meta"><span>👥 <b id="navetteSummaryPeople">8</b> persone</span><span>💶 €1 / persona</span></div>
-    <div class="preview-total">Servizio navetta: <strong id="navetteCost">€8</strong></div>
-  </div>
-
-  <button class="primary full" type="button" id="requestNavetteBtn">🚐 RICHIEDI NAVETTA</button>
-
-  <div id="navetteForm" class="request-contact navette-form" hidden>
-    <h3>📲 Richiesta navetta</h3>
-    <p class="muted">Inserisci i dati e invia la richiesta direttamente a Mattia su WhatsApp.</p>
-    <label>Nome e cognome
-      <input id="navetteName" type="text" placeholder="Es. Mario Rossi" autocomplete="name">
-    </label>
-    <label>Numero di telefono
-      <input id="navettePhone" type="tel" placeholder="Es. 3331234567" autocomplete="tel">
-    </label>
-    <label>Orario indicativo di partenza
-      <input id="navetteTime" type="time">
-    </label>
-    <label>Note
-      <textarea id="navetteNotes" rows="3" placeholder="Eventuali esigenze del gruppo"></textarea>
-    </label>
-    <button class="whatsapp-button full" type="button" id="sendNavetteWhatsApp">💬 INVIA RICHIESTA SU WHATSAPP</button>
-  </div>
-</section>
-
-
-  <header class="topbar">
-    <img src="mca-logo.jpg" class="logo" alt="MCA Production">
-    <div><div class="eyebrow">MCA PRODUCTION</div><h1>MCA</h1></div>
-  </header>
-
-  <section class="hero">
-    <div class="pill">ELITE • PROSSIMA SERATA</div>
-    <h2>Elite Saturday</h2>
-    <p>Sabato • 23:00 • Discoteca Elite</p>
-    <div class="actions">
-      <button class="primary" onclick="openSection('tickets')">🚐 Navette</button>
-      <button onclick="openSection('tables')">🥂 Tavoli</button>
-    </div>
-  </section>
-
-  
-<section id="tableConfigurator" class="table-config card">
-  <div class="section-kicker">🥂 ELITE</div>
-  <h2>Prenota il tuo tavolo</h2>
-  <p class="muted">Componi il tavolo, scegli le bottiglie e guarda subito la spesa a persona.</p>
-
-  <div class="people-box">
-    <div class="people-head">
-      <span>Quante persone?</span>
-      <strong><span id="peopleValue">8</span> persone</strong>
-    </div>
-    <input id="peopleSlider" type="range" min="1" max="30" value="8" step="1" aria-label="Numero persone">
-    <div class="range-labels"><span>1</span><span>30</span></div>
-  </div>
-
-  <div class="bottle-category">
-    <h3>🍸 VODKA</h3>
-    <div class="bottle-list">
-      <label><input type="checkbox" data-price="100" data-name="Absolut 0.7 L"><span>Absolut 0.7 L</span><b>€100</b></label>
-      <label><input type="checkbox" data-price="120" data-name="Absolut 1.0 L"><span>Absolut 1.0 L</span><b>€120</b></label>
-      <label><input type="checkbox" data-price="80" data-name="Eristoff 0.7 L"><span>Eristoff 0.7 L</span><b>€80</b></label>
-      <label><input type="checkbox" data-price="130" data-name="Sky 1 L"><span>Sky 1 L</span><b>€130</b></label>
-      <label><input type="checkbox" data-price="160" data-name="Belvedere 0.7 L"><span>Belvedere 0.7 L</span><b>€160</b></label>
-      <label><input type="checkbox" data-price="280" data-name="Belvedere 1.75 L"><span>Belvedere 1.75 L</span><b>€280</b></label>
-      <label><input type="checkbox" data-price="650" data-name="Belvedere 3 L"><span>Belvedere 3 L</span><b>€650</b></label>
-      <label><input type="checkbox" data-price="150" data-name="Grey Goose 0.7 L"><span>Grey Goose 0.7 L</span><b>€150</b></label>
-      <label><input type="checkbox" data-price="260" data-name="Grey Goose 1.5 L"><span>Grey Goose 1.5 L</span><b>€260</b></label>
-      <label><input type="checkbox" data-price="600" data-name="Grey Goose 3 L"><span>Grey Goose 3 L</span><b>€600</b></label>
-    </div>
-  </div>
-
-  <div class="bottle-category">
-    <h3>🍸 GIN</h3>
-    <div class="bottle-list">
-      <label><input type="checkbox" data-price="80" data-name="Bosford 0.7 L"><span>Bosford 0.7 L</span><b>€80</b></label>
-      <label><input type="checkbox" data-price="110" data-name="Bosford 1.0 L"><span>Bosford 1.0 L</span><b>€110</b></label>
-      <label><input type="checkbox" data-price="110" data-name="Bombay 0.7 L"><span>Bombay 0.7 L</span><b>€110</b></label>
-      <label><input type="checkbox" data-price="130" data-name="Bombay 1.0 L"><span>Bombay 1.0 L</span><b>€130</b></label>
-      <label><input type="checkbox" data-price="120" data-name="Bulldog 0.7 L"><span>Bulldog 0.7 L</span><b>€120</b></label>
-      <label><input type="checkbox" data-price="140" data-name="Gin Mare 0.7 L"><span>Gin Mare 0.7 L</span><b>€140</b></label>
-      <label><input type="checkbox" data-price="160" data-name="Gin Mare Capri 0.7 L"><span>Gin Mare Capri 0.7 L</span><b>€160</b></label>
-    </div>
-  </div>
-
-  <div class="bottle-category">
-    <h3>🥂 BOLLICINE</h3>
-    <div class="bottle-list">
-      <label><input type="checkbox" data-price="80" data-name="Ferrari 0.7 L"><span>Ferrari 0.7 L</span><b>€80</b></label>
-      <label><input type="checkbox" data-price="60" data-name="Prosecco Prima Scelta 0.7 L"><span>Prosecco Prima Scelta 0.7 L</span><b>€60</b></label>
-      <label><input type="checkbox" data-price="40" data-name="Prosecco Seconda Scelta 0.7 L"><span>Prosecco Seconda Scelta 0.7 L</span><b>€40</b></label>
-      <label><input type="checkbox" data-price="140" data-name="Ferrari Blanc de Blancs 1.5 L"><span>Ferrari Blanc de Blancs 1.5 L</span><b>€140</b></label>
-    </div>
-  </div>
-
-  <div class="bottle-category">
-    <h3>🥃 EXTRA</h3>
-    <div class="bottle-list">
-      <label><input type="checkbox" data-price="80" data-name="Rum Pampero 0.7 L"><span>Rum Pampero 0.7 L</span><b>€80</b></label>
-      <label><input type="checkbox" data-price="70" data-name="Cutty Sark 0.7 L"><span>Cutty Sark 0.7 L</span><b>€70</b></label>
-      <label><input type="checkbox" data-price="100" data-name="Jägermeister 0.7 L"><span>Jägermeister 0.7 L</span><b>€100</b></label>
-    </div>
-  </div>
-
-  <div class="table-summary">
-    <div><span>👥 Persone</span><strong id="summaryPeople">8</strong></div>
-    <div><span>🍾 Bottiglie</span><strong id="summaryBottles">0</strong></div>
-    <div><span>💰 Totale tavolo</span><strong id="summaryTotal">€0</strong></div>
-    <div class="per-person"><span>Spesa a persona</span><strong id="summaryPerPerson">€0,00</strong></div>
-    <button class="primary full" type="button" onclick="submitTableRequest()">RICHIEDI TAVOLO</button>
-  </div>
-
-<div id="requestContact" class="request-contact" hidden style="scroll-margin-bottom:120px">
-  <h3>📲 Invia la richiesta</h3>
-  <p class="muted">Inserisci i tuoi dati. La richiesta verrà preparata per WhatsApp di Mattia.</p>
-  <label>Nome e cognome
-    <input id="requestName" type="text" placeholder="Es. Mario Rossi" autocomplete="name">
-  </label>
-  <label>Numero di telefono
-    <input id="requestPhone" type="tel" placeholder="Es. 3331234567" autocomplete="tel">
-  </label>
-  <label>Da dove partite?
+</div></section><section class="navette-section card page-section hidden" id="navetteSection">
+<div class="section-kicker">🚐 MCA MOBILITY</div>
+<h2>Organizza la tua navetta</h2>
+<p class="muted">Parti dal tuo paese e arriva a Elite senza pensieri.</p>
+<div class="navette-step">
+<div class="step-title"><span>1</span><strong>📍 Da dove parti?</strong></div>
+<div class="town-search-wrap">
+  <input id="townSearch" class="town-search" type="search" autocomplete="off" placeholder="Scrivi il tuo paese..." aria-label="Cerca paese di partenza"/>
+  <span class="town-search-icon">⌕</span>
+</div>
+<p class="town-hint">Cerca anche solo con poche lettere. I risultati sono ordinati per vicinanza a Elite.</p>
+<div id="townResults" class="town-results" aria-live="polite"></div>
+<div id="townEmpty" class="town-empty hidden">Nessun paese trovato. Prova con un'altra ricerca.</div>
+</div>
+<div class="navette-step">
+<div class="step-title"><span>2</span><strong>👥 Quante persone?</strong></div>
+<div class="navette-people">
+<strong><span id="navettePeopleValue">8</span> persone</strong>
+<input aria-label="Numero persone navetta" id="navettePeopleSlider" max="30" min="1" step="1" type="range" value="8"/>
+<div class="range-labels"><span>1</span><span>30</span></div>
+</div>
+</div>
+<div class="navette-preview">
+<div class="preview-title">🚌 LA TUA NAVETTA</div>
+<div class="route"><span id="navetteTownValue">Seleziona il paese</span><strong>→</strong><span>Elite</span></div>
+<div class="preview-meta"><span>👥 <b id="navetteSummaryPeople">8</b> persone</span><span>💶 €1 / persona</span></div>
+<div class="preview-total">Servizio navetta: <strong id="navetteCost">€8</strong></div>
+</div>
+<button class="primary full" id="requestNavetteBtn" type="button">🚐 RICHIEDI NAVETTA</button>
+<div class="request-contact navette-form" hidden="" id="navetteForm">
+<h3>📲 Richiesta navetta</h3>
+<p class="muted">Inserisci i dati e invia la richiesta direttamente a Mattia su WhatsApp.</p>
+<label>Nome e cognome
+      <input autocomplete="name" id="navetteName" placeholder="Es. Mario Rossi" type="text"/>
+</label>
+<label>Numero di telefono
+      <input autocomplete="tel" id="navettePhone" placeholder="Es. 3331234567" type="tel"/>
+</label>
+<label>Orario indicativo di partenza
+      <input id="navetteTime" type="time"/>
+</label>
+<label>Note
+      <textarea id="navetteNotes" placeholder="Eventuali esigenze del gruppo" rows="3"></textarea>
+</label>
+<button class="whatsapp-button full" id="sendNavetteWhatsApp" type="button">💬 INVIA RICHIESTA SU WHATSAPP</button>
+</div>
+</section><section class="table-config card page-section hidden" id="tableConfigurator">
+<div class="section-kicker">🥂 ELITE</div>
+<h2>Prenota il tuo tavolo</h2>
+<p class="muted">Componi il tavolo, scegli le bottiglie e guarda subito la spesa a persona.</p>
+<div class="people-box">
+<div class="people-head">
+<span>Quante persone?</span>
+<strong><span id="peopleValue">8</span> persone</strong>
+</div>
+<input aria-label="Numero persone" id="peopleSlider" max="30" min="1" step="1" type="range" value="8"/>
+<div class="range-labels"><span>1</span><span>30</span></div>
+</div>
+<div class="bottle-category">
+<h3>🍸 VODKA</h3>
+<div class="bottle-list">
+<label><input data-name="Absolut 0.7 L" data-price="100" type="checkbox"/><span>Absolut 0.7 L</span><b>€100</b></label>
+<label><input data-name="Absolut 1.0 L" data-price="120" type="checkbox"/><span>Absolut 1.0 L</span><b>€120</b></label>
+<label><input data-name="Eristoff 0.7 L" data-price="80" type="checkbox"/><span>Eristoff 0.7 L</span><b>€80</b></label>
+<label><input data-name="Sky 1 L" data-price="130" type="checkbox"/><span>Sky 1 L</span><b>€130</b></label>
+<label><input data-name="Belvedere 0.7 L" data-price="160" type="checkbox"/><span>Belvedere 0.7 L</span><b>€160</b></label>
+<label><input data-name="Belvedere 1.75 L" data-price="280" type="checkbox"/><span>Belvedere 1.75 L</span><b>€280</b></label>
+<label><input data-name="Belvedere 3 L" data-price="650" type="checkbox"/><span>Belvedere 3 L</span><b>€650</b></label>
+<label><input data-name="Grey Goose 0.7 L" data-price="150" type="checkbox"/><span>Grey Goose 0.7 L</span><b>€150</b></label>
+<label><input data-name="Grey Goose 1.5 L" data-price="260" type="checkbox"/><span>Grey Goose 1.5 L</span><b>€260</b></label>
+<label><input data-name="Grey Goose 3 L" data-price="600" type="checkbox"/><span>Grey Goose 3 L</span><b>€600</b></label>
+</div>
+</div>
+<div class="bottle-category">
+<h3>🍸 GIN</h3>
+<div class="bottle-list">
+<label><input data-name="Bosford 0.7 L" data-price="80" type="checkbox"/><span>Bosford 0.7 L</span><b>€80</b></label>
+<label><input data-name="Bosford 1.0 L" data-price="110" type="checkbox"/><span>Bosford 1.0 L</span><b>€110</b></label>
+<label><input data-name="Bombay 0.7 L" data-price="110" type="checkbox"/><span>Bombay 0.7 L</span><b>€110</b></label>
+<label><input data-name="Bombay 1.0 L" data-price="130" type="checkbox"/><span>Bombay 1.0 L</span><b>€130</b></label>
+<label><input data-name="Bulldog 0.7 L" data-price="120" type="checkbox"/><span>Bulldog 0.7 L</span><b>€120</b></label>
+<label><input data-name="Gin Mare 0.7 L" data-price="140" type="checkbox"/><span>Gin Mare 0.7 L</span><b>€140</b></label>
+<label><input data-name="Gin Mare Capri 0.7 L" data-price="160" type="checkbox"/><span>Gin Mare Capri 0.7 L</span><b>€160</b></label>
+</div>
+</div>
+<div class="bottle-category">
+<h3>🥂 BOLLICINE</h3>
+<div class="bottle-list">
+<label><input data-name="Ferrari 0.7 L" data-price="80" type="checkbox"/><span>Ferrari 0.7 L</span><b>€80</b></label>
+<label><input data-name="Prosecco Prima Scelta 0.7 L" data-price="60" type="checkbox"/><span>Prosecco Prima Scelta 0.7 L</span><b>€60</b></label>
+<label><input data-name="Prosecco Seconda Scelta 0.7 L" data-price="40" type="checkbox"/><span>Prosecco Seconda Scelta 0.7 L</span><b>€40</b></label>
+<label><input data-name="Ferrari Blanc de Blancs 1.5 L" data-price="140" type="checkbox"/><span>Ferrari Blanc de Blancs 1.5 L</span><b>€140</b></label>
+</div>
+</div>
+<div class="bottle-category">
+<h3>🥃 EXTRA</h3>
+<div class="bottle-list">
+<label><input data-name="Rum Pampero 0.7 L" data-price="80" type="checkbox"/><span>Rum Pampero 0.7 L</span><b>€80</b></label>
+<label><input data-name="Cutty Sark 0.7 L" data-price="70" type="checkbox"/><span>Cutty Sark 0.7 L</span><b>€70</b></label>
+<label><input data-name="Jägermeister 0.7 L" data-price="100" type="checkbox"/><span>Jägermeister 0.7 L</span><b>€100</b></label>
+</div>
+</div>
+<div class="table-summary">
+<div><span>👥 Persone</span><strong id="summaryPeople">8</strong></div>
+<div><span>🍾 Bottiglie</span><strong id="summaryBottles">0</strong></div>
+<div><span>💰 Totale tavolo</span><strong id="summaryTotal">€0</strong></div>
+<div class="per-person"><span>Spesa a persona</span><strong id="summaryPerPerson">€0,00</strong></div>
+<button class="primary full" onclick="submitTableRequest()" type="button">RICHIEDI TAVOLO</button>
+</div>
+<div class="request-contact" hidden="" id="requestContact" style="scroll-margin-bottom:120px">
+<h3>📲 Invia la richiesta</h3>
+<p class="muted">Inserisci i tuoi dati. La richiesta verrà preparata per WhatsApp di Mattia.</p>
+<label>Nome e cognome
+    <input autocomplete="name" id="requestName" placeholder="Es. Mario Rossi" type="text"/>
+</label>
+<label>Numero di telefono
+    <input autocomplete="tel" id="requestPhone" placeholder="Es. 3331234567" type="tel"/>
+</label>
+<label>Da dove partite?
     <select id="requestTown">
-      <option value="Montefiascone">Montefiascone</option>
-      <option value="Marta">Marta</option>
-      <option value="Piansano">Piansano</option>
-      <option value="Valentano">Valentano</option>
-      <option value="Altro">Altro</option>
-    </select>
-  </label>
-  <label class="navetta-check">
-    <input id="requestNavetta" type="checkbox">
+<option value="Montefiascone">Montefiascone</option>
+<option value="Marta">Marta</option>
+<option value="Piansano">Piansano</option>
+<option value="Valentano">Valentano</option>
+<option value="Altro">Altro</option>
+</select>
+</label>
+<label class="navetta-check">
+<input id="requestNavetta" type="checkbox"/>
     🚐 Richiedo anche la navetta
   </label>
-  <button class="whatsapp-button full" type="button" onclick="sendTableRequestWhatsApp()">💬 INVIA RICHIESTA SU WHATSAPP</button>
+<button class="whatsapp-button full" onclick="sendTableRequestWhatsApp()" type="button">💬 INVIA RICHIESTA SU WHATSAPP</button>
 </div>
-
 </section>
 
+
+
+
 <section class="card">
-    <h3>Come funziona</h3>
-    <div class="steps">
-      <div><b>1</b><span>Scegli tavolo o navetta</span></div>
-      <div><b>2</b><span>Invia la richiesta</span></div>
-      <div><b>3</b><span>Mattia conferma e indica il pagamento</span></div>
-    </div>
-    <p class="note">Pagamento: <strong>contanti</strong> • Referente: <strong>Mattia Gipsi</strong></p>
-  </section>
+<h3>Come funziona</h3>
+<div class="steps">
+<div><b>1</b><span>Scegli tavolo o navetta</span></div>
+<div><b>2</b><span>Invia la richiesta</span></div>
+<div><b>3</b><span>Mattia conferma e indica il pagamento</span></div>
+</div>
+<p class="note">Pagamento: <strong>contanti</strong> • Referente: <strong>Mattia Gipsi</strong></p>
+</section>
 
-  <section id="tickets" class="card hidden">
-    <h3>🚐 Navette</h3>
-    <label for="ticketQty">Quantità</label>
-    <select id="ticketQty">
-      <option>1</option><option>2</option><option>3</option><option>4</option>
-      <option>5</option><option>6</option><option>7</option><option>8</option>
-    </select>
-    <button class="primary" onclick="requestTicket()">Invia richiesta</button>
-  </section>
 
-  <section id="tables" class="card hidden">
-    <h3>🥂 Prenota tavolo</h3>
-    <label for="people">Numero persone</label>
-    <select id="people">
-      <option>4</option><option>6</option><option>8</option><option>10</option>
-      <option>12</option><option>15</option><option>20+</option>
-    </select>
-    <label for="name">Nome</label>
-    <input id="name" autocomplete="name" placeholder="Il tuo nome">
-    <button class="primary" onclick="requestTable()">Invia richiesta</button>
-  </section>
+<section class="card">
+<h3>👥 Invita amici</h3>
+<p class="muted">Condividi MCA con il tuo gruppo per la prossima serata.</p>
+<button onclick="shareMCA()">Condividi MCA</button>
+</section>
+<section class="card">
+<h3>⭐ MCA Points</h3>
+<div class="points"><strong>0</strong><span>punti</span></div>
+<p class="muted">Sistema punti e premi: fase successiva.</p>
+</section>
+<section class="card">
+<h3>📞 Contatto</h3>
+<div class="contact">+39 371 460 0364</div>
 
-  <section class="card">
-    <h3>👥 Invita amici</h3>
-    <p class="muted">Condividi MCA con il tuo gruppo per la prossima serata.</p>
-    <button onclick="shareMCA()">Condividi MCA</button>
-  </section>
-
-  <section class="card">
-    <h3>⭐ MCA Points</h3>
-    <div class="points"><strong>0</strong><span>punti</span></div>
-    <p class="muted">Sistema punti e premi: fase successiva.</p>
-  </section>
-
-  <section class="card">
-    <h3>📞 Referente</h3>
-    <div class="contact">Mattia Gipsi</div>
-    <p class="muted">Pagamento in contanti al referente dopo conferma.</p>
-  </section>
-
-  <nav>
-    <button onclick="scrollTopApp()">⌂ Home</button>
-    <button onclick="openSection('tickets')">🚐 Navette</button>
-    <button onclick="openSection('tables')">🥂 Tavoli</button>
-    <button onclick="document.querySelector('.contact').scrollIntoView({behavior:'smooth'})">👤 Mattia</button>
-  </nav>
+</section>
+<nav><button onclick="showPage('homeSection')" type="button">⌂ Home</button><button onclick="showPage('navetteSection')" type="button">🚐 Navetta</button><button onclick="showPage('tableConfigurator')" type="button">🍾 Tavolo</button><button onclick="window.open('https://wa.me/393714600364','_blank','noopener')" type="button">📞 Contatto</button></nav>
 </main>
-<div id="toast" aria-live="polite"></div>
-<script src="app.js?v=10"></script>
+<div aria-live="polite" id="toast"></div>
+<script src="app.js?v=16"></script>
 </body>
 </html>
