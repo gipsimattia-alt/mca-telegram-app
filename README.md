@@ -124,3 +124,7 @@ Per l'invio completamente automatico senza che l'utente prema "Invia" serve un b
 La ricerca navetta ora comprende una lista più ampia di comuni e paesi dell'area di Castel Viscardo/Elite, ordinata per distanza indicativa. La ricerca resta parziale e riconosce il paese anche digitando poche lettere.
 
 Le distanze mostrate sono indicative e basate sulla distanza in linea d'aria dal centro urbano di Castel Viscardo, non sul percorso stradale. Le fonti consultate riportano, tra gli altri, Castel Giorgio, Allerona, Orvieto, Acquapendente, Bolsena, Bagnoregio, Lubriano, Gradoli e altri comuni limitrofi. 
+
+
+## v17 deployment
+Use this folder as a fresh Telegram Mini App deployment path to bypass cached v16 assets.
