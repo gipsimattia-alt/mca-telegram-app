@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>MCA Nightlife</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="app">
+  <header class="topbar">
+    <img src="mca-logo.jpg" class="logo" alt="MCA Production">
+    <div><div class="eyebrow">MCA PRODUCTION</div><h1>MCA</h1></div>
+  </header>
+
+  <section class="hero">
+    <div class="pill">ELITE • PROSSIMA SERATA</div>
+    <h2>Elite Saturday</h2>
+    <p>Sabato • 23:00 • Discoteca Elite</p>
+    <div class="actions">
+      <button class="primary" onclick="openSection('tickets')">🚪 Entrate</button>
+      <button onclick="openSection('tables')">🥂 Tavoli</button>
+    </div>
+  </section>
+
+  <section class="card">
+    <h3>Come funziona</h3>
+    <div class="steps">
+      <div><b>1</b><span>Scegli biglietti o tavolo</span></div>
+      <div><b>2</b><span>Invia la richiesta</span></div>
+      <div><b>3</b><span>Mattia conferma e indica il pagamento</span></div>
+    </div>
+    <p class="note">Pagamento: <strong>contanti</strong> • Referente: <strong>Mattia Gipsi</strong></p>
+  </section>
+
+  <section id="tickets" class="card hidden">
+    <h3>🚪 Entrate</h3>
+    <label for="ticketQty">Quantità</label>
+    <select id="ticketQty">
+      <option>1</option><option>2</option><option>3</option><option>4</option>
+      <option>5</option><option>6</option><option>7</option><option>8</option>
+    </select>
+    <button class="primary" onclick="requestTicket()">Invia richiesta</button>
+  </section>
+
+  <section id="tables" class="card hidden">
+    <h3>🥂 Prenota tavolo</h3>
+    <label for="people">Numero persone</label>
+    <select id="people">
+      <option>4</option><option>6</option><option>8</option><option>10</option>
+      <option>12</option><option>15</option><option>20+</option>
+    </select>
+    <label for="name">Nome</label>
+    <input id="name" autocomplete="name" placeholder="Il tuo nome">
+    <button class="primary" onclick="requestTable()">Invia richiesta</button>
+  </section>
+
+  <section class="card">
+    <h3>👥 Invita amici</h3>
+    <p class="muted">Condividi MCA con il tuo gruppo per la prossima serata.</p>
+    <button onclick="shareMCA()">Condividi MCA</button>
+  </section>
+
+  <section class="card">
+    <h3>⭐ MCA Points</h3>
+    <div class="points"><strong>0</strong><span>punti</span></div>
+    <p class="muted">Sistema punti e premi: fase successiva.</p>
+  </section>
+
+  <section class="card">
+    <h3>📞 Referente</h3>
+    <div class="contact">Mattia Gipsi</div>
+    <p class="muted">Pagamento in contanti al referente dopo conferma.</p>
+  </section>
+
+  <nav>
+    <button onclick="scrollTopApp()">⌂ Home</button>
+    <button onclick="openSection('tickets')">🚪 Entrate</button>
+    <button onclick="openSection('tables')">🥂 Tavoli</button>
+    <button onclick="document.querySelector('.contact').scrollIntoView({behavior:'smooth'})">👤 Mattia</button>
+  </nav>
+</main>
+<div id="toast" aria-live="polite"></div>
+<script src="app.js"></script>
+</body>
+</html>
