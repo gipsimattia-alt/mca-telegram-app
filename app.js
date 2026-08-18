@@ -86,8 +86,12 @@ function submitTableRequest(){
   const box=document.getElementById('requestContact');
   if(box){
     box.hidden=false;
-    box.scrollIntoView({behavior:'smooth',block:'center'});
-    setTimeout(()=>document.getElementById('requestName')?.focus(),250);
+    box.removeAttribute('hidden');
+    box.style.display='block';
+    requestAnimationFrame(()=>{
+      box.scrollIntoView({behavior:'smooth',block:'center'});
+      setTimeout(()=>document.getElementById('requestName')?.focus(),300);
+    });
   }
 }
 document.addEventListener('DOMContentLoaded',()=>{

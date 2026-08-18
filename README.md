@@ -61,3 +61,14 @@ Per l'invio completamente automatico senza che l'utente prema "Invia" serve un b
 - Rimosso lo sticky del riepilogo che copriva il pulsante.
 - Aggiunto spazio per la barra di navigazione mobile.
 - Il modulo richiesta tavolo viene portato in una posizione visibile dopo il click.
+
+
+## Versione v7 — Fix cache Telegram
+- Aggiunto cache-busting a CSS e JavaScript.
+- Il modulo richiesta tavolo viene forzato visibile dopo il click.
+- Evita che Telegram WebView continui a usare il vecchio app.js.
+
+
+## Versione v8 — Spazio CTA mobile
+- Riservato spazio sufficiente sopra la barra fissa Telegram.
+- Il pulsante RICHIEDI TAVOLO e il modulo WhatsApp non vengono più coperti.

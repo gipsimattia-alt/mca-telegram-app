@@ -39,3 +39,20 @@ main, body{padding-bottom:110px}
   .table-summary{padding-bottom:18px}
   .request-contact{scroll-margin-top:30px}
 }
+
+/* v8: reserve real space for Telegram's fixed bottom navigation */
+.table-config{
+  padding-bottom:150px !important;
+}
+.table-summary{
+  margin-bottom:120px !important;
+}
+.request-contact{
+  margin-bottom:150px !important;
+  scroll-margin-bottom:150px !important;
+}
+@media (max-width:600px){
+  .table-summary .full{
+    margin-bottom:8px;
+  }
+}
